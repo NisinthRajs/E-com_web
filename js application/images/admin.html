@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link href="https://fonts.cdnfonts.com/css/vermin-vibes-4" rel="stylesheet">
+    <style>
+
+
+    body{
+    background-image: url("images/ba-image3\ \(2\).jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    margin: 0px;
+    padding: 0px;  
+      
+    
+    }
+
+    #navbar{
+        display: flex;
+        justify-content: flex-end;
+        /* margin-top: 20px; */
+    }
+
+    a{
+        color: grey;
+        font-family: cursive;
+        font-size: large;
+        text-decoration: none;
+    }
+
+.NavItems{
+    margin: 10px 20px 0px 0px;
+    font-family: 'Oceanwide', sans-serif;
+    padding: 8px;
+    border-radius: 8px;
+}
+.NavItems:hover{
+    background-color: rgba(0, 255, 255, 0.155);
+}
+.inputBtn{
+    width: 260px;
+    height: 30px;
+    border: 0.5px solid gray;
+    color: rgba(0, 0, 0, 0.822);
+    border-radius: 8px;
+    text-align: center;
+    font:17px cursive;
+    letter-spacing: 1px;
+
+}
+button{
+    font-family: cursive;
+    font-size: medium;
+    color: grey;
+    background-color: white;
+    border-radius: 8px;
+    border: 0.5px solid grey;
+}
+#oClearButton{
+    margin-left: 10px;
+    width: 110px;
+}
+#UserRegForm{
+    margin-top: -45px;
+    margin-left: 40px;
+}
+    </style>
+</head>
+
+
+<body>
+    <div>
+        
+        <div id="navbar"  style="height: 50px;padding-right: 30px;" >
+           <span style="position: relative;left: -270px;font: 35px 'Spoof Trial', sans-serif;color: white;top: 6px;letter-spacing: 2px;">Welcome Admin</span>
+            <span class="NavItems"><a onclick="AddItem()" style="cursor: pointer;font-family: 'Oceanwide', sans-serif;color: aliceblue;">Add Items</a></span>
+            <span class="NavItems"><a href="home.html" style="cursor: pointer;font-family: 'Oceanwide', sans-serif;color: aliceblue;">Logout</a></span>
+           
+        </div>
+    </div>
+
+  <div>
+
+<div id="card" class="row" style="display:grid;grid-template-columns: auto auto auto auto ;justify-content: space-around;margin-top: 50px;"></div>
+
+  </div>
+    <!-- ***************** Add item Popup ********************* -->
+    <div id="AddItemPopup" style="display: none; position: absolute;top: 70px;left: 400px;background-color: rgba(0, 0, 0, 0.861);padding: 25px 95px 100px 95px;height: 340px;box-shadow: 0px 0px 5px 5px gray;border-radius: 8px;">
+        
+        <img src="close-512.webp" height="26px" width="26px" onclick="oClose()" style="position: relative;top:-12px;left: 400px;opacity: 0.6;cursor: pointer;background-color: rgb(255, 0, 0);border-radius: 50%;box-shadow: 0px 0px 10px 3px red;" />
+
+        
+        <h2 style="opacity: 2;position: relative;left: 100px;top: -50px; letter-spacing: 1px; font-family: cursive; color: gray;width: max-content;">Add Product</h2>
+ 
+    <form method="dialog" id="UserRegForm">
+            
+                <input type="text" class="inputBtn" id="ProductBrand" placeholder="Product brand"/><br>
+                <div id="UserNameNotify" style="margin: 3px 0px 7px 8px; color: red;visibility: hidden;font-size: small;opacity: 0.6;">Must contain Min-3 letters</div>
+
+                <input type="radio"  name="gender" value="Men"><span class="w" style="color: white;font-weight:bold">Men</span> </input>
+                <input type="radio" name="gender" class="w" value="Women"><span class="w" style="color: white;font-weight:bold">Women</span></input>
+                <br>
+                <div id="GenderNotify" style="margin: 3px 0px 7px 8px; color: red;visibility: hidden;font-size: small;opacity: 0.6;">Select your gender</div>
+
+                
+                <input type="text" id="ProductName"class="inputBtn" placeholder="Product Name"/><br><br>
+
+                <input type="number" class="inputBtn" id="ProductCost" placeholder="Product cost"/> <br>
+                <div id="UserMailNotify" style="margin: 3px 0px 7px 8px; color: red;visibility: hidden;font-size: small;opacity: 0.6;">Must follow xx@xx.xx</div>
+
+                <input type="number" class="inputBtn" id="ProductQty" placeholder="Product Quantity"/> <br>
+                <div id="UserPassNotify" style="margin: 3px 0px 7px 8px; color: red;visibility: hidden;font-size: small;opacity: 0.6;">Must follow xxXX@00</div>
+                
+                <input type="file" placeholder="Upload Image" id="myfile" style="color: white;">
+                <button onclick="UploadImg()" style="margin-left: -70px;">Upload Image</button>
+                <br><br>
+
+                <button onclick="AddProduct()" class="p" id="oCreateUserBtn" >Add Product</button>
+                <button type="reset" class="q" id="oClearButton">Clear</button>
+
+
+            
+        </form>
+
+        <img id="Myimage" width="70px" height="70px" src="" style="position: relative;top: -190px;left: 330px;display: none;">
+</div>
+
+
+    <script>
+
+this.getimg;
+
+var myfile=document.querySelector('#myfile').addEventListener("change",function (){
+
+
+var reader=new FileReader();
+reader.addEventListener("load",() => {
+
+localStorage.setItem("recentimg",reader.result);
+});
+
+reader.readAsDataURL(this.files[0]);
+});
+
+document.addEventListener('DOMContentLoaded',() => {
+getimg=localStorage.getItem("recentimg");
+
+});
+
+        function AddItem()
+        {
+        
+            document.getElementById('AddItemPopup').style.display = "block"
+
+        }
+
+        function UploadImg()
+        {
+            debugger
+            if(document.getElementById('myfile').value == '')
+            {
+                alert("Choose Image file")
+            }
+            else
+            {
+                document.getElementById('Myimage').style.display = "block"
+                document.getElementById('Myimage').setAttribute('src',localStorage.getItem('recentimg'))
+
+                function abc()
+                {
+                    return new Promise(aaa=>{
+                        setTimeout(()=>{
+                            
+                            aaa(document.getElementById('Myimage').style.display = "none")
+                            
+                        },5000)
+                    })
+                }
+                abc()
+            }
+        }
+function oClose()
+{
+    document.getElementById('AddItemPopup').style.display = "none"
+}
+
+var ProductBrand = document.getElementById('ProductBrand')
+var ProductName = document.getElementById('ProductName')
+var ProductCost = document.getElementById('ProductCost')
+var ProductQty = document.getElementById('ProductQty')
+
+
+// **************** initial Display Products *****************
+
+const displayCards=()=>{
+
+const productList = JSON.parse(localStorage.getItem("ProductDetails"))? JSON.parse(localStorage.getItem("ProductDetails")): [];
+
+productList.forEach((product,index) => {
+
+var cardContainer = document.getElementById("card");
+
+const cardContent = `
+
+<div style="width:190px;height:350px;border:0.5px solid gray;margin-bottom:25px;box-shadow: 0px 0px 40px 5px black;border-radius: 8px;background-color:rgba(0, 0, 0, 0.722)" >
+
+<img src=${product.ProductImage} width='190px' height='150px' style="border-radius: 8px 8px 0px 0px"/>
+
+      <div style="margin:0px;pading:0px;">
+
+        <h5 style="margin:2px;pading:0px;text-align:center;font: 18px cursive;color: gray;font-weight:bold"> Name : ${product.ProductName} </h5>
+        
+        <p style="text-align:center;font: 16px cursive;color: gray;" >Brand :${product.ProductBrand} </p>
+
+        <p style="text-align:center;font: 14px cursive;color: gray;display:none" >Quantity :${product.ProductQty}</p>
+
+        <p style="text-align:center;font: 16px cursive;color: gray;" >Price :${product.ProductCost}</p>
+
+        <button type="button" onClick={deleteProduct(${index})} style="position:relative;left:65px;margin-bottom:20px">Delete</button>
+
+    </div>
+
+</div>`;
+
+cardContainer.innerHTML += cardContent;
+
+});
+
+}
+
+// location.reload()
+displayCards()
+
+
+// ************** Add Product Function ****************
+
+function AddProduct()
+{
+
+    // **************** Product Id Generating ******************
+    const localStorageData=()=>{
+
+    const ProductDetails=JSON.parse(localStorage.getItem('ProductDetails'))
+
+    if(ProductDetails){
+
+        console.log('theree ');
+
+        return ProductDetails
+
+    }else{
+
+        console.log('no data');
+
+        return []
+
+    }
+
+}
+
+// localStorageData()
+
+let product = localStorageData()
+
+
+    var gender = document.getElementsByName('gender')
+    var ProdGend;
+                for(var i=0;i<gender.length;i++)
+                {   debugger
+                    if(gender[i].checked){
+                       // console.log(gen[i].value);
+
+                       ProdGend=gender[i].value
+                    }
+                }
+
+
+// console.log(ProductBrand.value,ProdGend,ProductName.value,ProductCost.value,ProductQty.value);
+
+
+var ProductData=new Array()
+                
+ProductData=JSON.parse(localStorage.getItem("ProductDetails"))?JSON.parse(localStorage.getItem("ProductDetails")):[]
+
+
+ProductData.push({
+                        "ProductBrand":ProductBrand.value,
+                        "ProdGend":ProdGend,
+                        "ProductName":ProductName.value,
+                        "ProductCost":ProductCost.value,
+                        "ProductQty":ProductQty.value,
+                        "ProductImage":localStorage.getItem('recentimg'),
+                        "ProductId":product.length+1
+
+                    })
+
+                    localStorage.setItem("ProductDetails",JSON.stringify(ProductData));
+                    alert("Product Added Successfully")
+
+
+// ************* Adding product *****************
+
+const displayCards=()=>{
+
+const productList = JSON.parse(localStorage.getItem("ProductDetails"))? JSON.parse(localStorage.getItem("ProductDetails")): [];
+
+
+
+productList.forEach((product,index) => {
+
+var cardContainer = document.getElementById("card");
+
+const cardContent = `
+
+<div style="width:190px;height:340px;border:0.5px solid gray;margin-bottom:25px;box-shadow: 0px 0px 5px 5px gray;border-radius: 8px" >
+
+<img src=${product.ProductImage} width='190px' height='150px' style="border-radius: 8px 8px 0px 0px"/>
+
+      <div style="margin:0px;pading:0px;">
+
+        <h5 style="margin:2px;pading:0px;text-align:center;font: 18px cursive;color: gray;font-weight:bold"> Name : ${product.ProductName} </h5>
+        
+        <p style="text-align:center;font: 16px cursive;color: gray;" >Brand :${product.ProductBrand} </p>
+
+        <p style="text-align:center;font: 14px cursive;color: gray;" >Quantity :${product.ProductQty}</p>
+
+        <p style="text-align:center;font: 16px cursive;color: gray;" >Price :${product.ProductCost}</p>
+
+        <button type="button" onClick={deleteProduct(${index})} style="position:relative;left:65px;margin-bottom:20px">Delete</button>
+
+    </div>
+
+</div>`;
+
+
+cardContainer.innerHTML += cardContent;
+
+});
+
+}
+
+location.reload()
+
+
+}
+
+// ************* Delete product *****************
+
+const deleteProduct=(index)=>{
+
+const productList = JSON.parse(localStorage.getItem("ProductDetails"))? JSON.parse(localStorage.getItem("ProductDetails")): [];
+
+
+
+const filtered=productList.filter((p,ind)=>{
+
+  return ind !== index
+
+})
+
+  localStorage.setItem('ProductDetails',JSON.stringify(filtered))
+
+  alert('Product Deleted')
+
+  
+  location.reload()
+
+  
+}
+</script>
+   
+
+
+
+</body>
+</html>

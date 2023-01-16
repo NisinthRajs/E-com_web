@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>invoice</title>
+    <style>
+        div table{
+            border: 1px rgb(160, 156, 156) dotted;
+            width: 450px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        #TotalbilltoPay{
+            padding: 10px 0px 10px 500px;
+            margin-top: 40px;
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            letter-spacing: 2px;
+            color: gray;
+            border-top: 2px solid black;
+            border-bottom: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+
+   
+    <button onclick="generatePDF()" style="height: 35px;position: relative;border-radius: 8px;background-color: rgb(67, 159, 172);border: none;font-size: 16px;cursor: pointer;left: 1050px;margin-top: 20px;">Download Invoice</button>
+
+    <div id="invoice" style="height:max-content ;padding: 50px;">
+
+
+		<div style="display: flex;justify-content: center;gap: 410px;">
+           <div> <h1 style="margin-top: 30px;margin-bottom: 50px;">Your Invoice</h1></div> 
+            <div>
+                <p style="font-size: 20px;" id="CurrDate"></p>
+            <p style="font-size: 20px;" id="CurrTime"></p>
+            </div>
+        </div>
+        <div id="QtyContainer" style="position: relative;top: 130px;left: 720px;display: inline;color: gray;font-family: Helvetica;"></div>
+
+        <hr>
+        <div style="display:flex ;justify-content: flex-start;gap: 50px;margin-left: 25px;">
+            <div id="CustName" style="font-weight: bold;"></div>
+            <div id="CustPhone" style="font-weight: bold;letter-spacing: 1px;"></div>
+        </div>
+        <hr>
+        <div style="display: flex;">
+                <table border="2px" id="invoiceTable">
+                    <tr><th>Product-Name</th>
+                    <th>Cost</th>
+                   </tr>
+                </table>
+
+                <table id="invoiceTable2" border="2px">
+                    <tr><th>Quantity</th></tr>
+                </table>
+
+                <table id="invoiceTable3" border="2px">
+                    <tr><th>Price</th></tr>
+                </table>
+        </div>
+        
+                <div id="TotalbilltoPay" ></div>
+        
+                <div style="font-size: 20px;margin-top: 50px;display: flex;justify-content: center;font-family: Brush Script MT;letter-spacing: 2px;font-weight: bold;">* * * * * * * * * * Please Visit Again * * * * * * * * * *</div>
+    </div>
+    <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+		<script src="js/jsPDF/dist/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+    <script>
+            var invoiceTable = document.getElementById("invoiceTable");
+            var invoiceTable2 = document.getElementById("invoiceTable2");
+            var invoiceTable3 = document.getElementById("invoiceTable3");
+
+            var containerQty = document.getElementById("QtyContainer")
+            var ItemQty = JSON.parse(localStorage.getItem("ProdQty"))
+            var TotalBill = localStorage.getItem("TotalBill")//get total bill from local storage
+            var TotalbilltoPay = document.getElementById("TotalbilltoPay").innerHTML ="<i><b>"+ TotalBill +"</i></b>"
+        var d = new Date()
+        document.getElementById("CurrDate").innerHTML = d.getDate()+"/"+parseInt(d.getMonth()+1)+"/"+d.getFullYear() 
+        document.getElementById("CurrTime").innerHTML = new Date().toLocaleTimeString();
+        // document.getElementById('TotalbilltoPay').innerHTML ="<b>"+ "Total Bill : "+" "+localStorage.getItem("TotalBill")+"</b>"
+        document.getElementById('CustName').innerHTML = "Name : "+localStorage.getItem("UserLogName")
+        document.getElementById('CustPhone').innerHTML = "Number : "+localStorage.getItem("UserLogPhone")
+
+        const displayCart = () => {
+        const productList = JSON.parse(localStorage.getItem("cartedItems"))? JSON.parse(localStorage.getItem("cartedItems")): [];
+
+        productList.forEach((product,index) => {
+            
+           
+
+            const cardContent = `
+            
+                <tr><td>${product.ProductName}</td>
+               
+               <td>${product.ProductCost}</td>
+                    
+            
+    `;
+
+    invoiceTable.innerHTML += cardContent;
+    });
+    var QtyContents;
+    ItemQty.forEach((val)=>{
+        
+            // console.log(val.qty);
+            QtyContents = `<tr><td>${val.qty}</td></tr>`
+            invoiceTable2.innerHTML += QtyContents
+            })
+  
+            var PriceContents
+        for(var i=0;i<=productList.length-1;i++)
+        {
+            PriceContents = `<tr><td>${((ItemQty[i].qty)*(productList[i].ProductCost))}</td></tr>`
+            invoiceTable3.innerHTML += PriceContents
+        }
+    }
+    displayCart()
+
+            function generatePDF()
+            {
+                var ele = document.getElementById('invoice')
+                html2pdf().from(ele)
+                .save('invoice.pdf');
+            } 
+    </script>
+</body>
+</html>

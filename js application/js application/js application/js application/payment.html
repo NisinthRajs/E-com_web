@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js" integrity="sha512-VKjwFVu/mmKGk0Z0BxgDzmn10e590qk3ou/jkmRugAkSTMSIRkd4nEnk+n7r5WBbJquusQEQjBidrBD3IQQISQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+  <link rel="icon" href="./shop.jpg">
+
+<style>
+    *{
+  font-family: 'Poppins', sans-serif;
+  margin:0; padding:0;
+  box-sizing: border-box;
+  outline: none; border:none;
+  text-transform: capitalize;
+  transition: all .2s linear;
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:25px;
+  min-height: 100vh;
+  /* background: linear-gradient(90deg, #2ecc71 60%, #27ae60 40.1%); */
+}
+
+.container form{
+  padding:20px;
+  width:700px;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0,0,0,.1);
+}
+
+.container form .row{
+  display: flex;
+  flex-wrap: wrap;
+  gap:15px;
+}
+
+.container form .row .col{
+  flex:1 1 250px;
+}
+
+.container form .row .col .title{
+  font-size: 20px;
+  color:#333;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.container form .row .col .inputBox{
+  margin:15px 0;
+}
+
+.container form .row .col .inputBox span{
+  margin-bottom: 10px;
+  display: block;
+}
+
+.container form .row .col .inputBox input{
+  width: 100%;
+  border:1px solid #ccc;
+  padding:10px 15px;
+  font-size: 15px;
+  text-transform: none;
+}
+
+.container form .row .col .inputBox input:focus{
+  border:1px solid #000;
+}
+
+.container form .row .col .flex{
+  display: flex;
+  gap:15px;
+}
+
+.container form .row .col .flex .inputBox{
+  margin-top: 5px;
+}
+
+.container form .row .col .inputBox img{
+  height: 34px;
+  margin-top: 5px;
+  filter: drop-shadow(0 0 1px #000);
+}
+
+.container form .submit-btn{
+  width: 100%;
+  padding:12px;
+  font-size: 17px;
+  /* background: #27ae60; */
+  color:#fff;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.submit-btn{
+    background-color: rgb(35, 166, 236);
+}
+
+
+/* .container form .submit-btn:hover{
+  background: #2ecc71;
+} */
+</style>
+</head>
+<body>
+<!-- <button id="btnn">click</button> -->
+<div class="container" id="testdiv">
+
+    <form action="">
+
+        <div class="row">
+
+            <div class="col">
+
+                <h3 class="title">billing address</h3>
+
+                <div class="inputBox">
+                    <span>full name :</span>
+                    <input type="text" placeholder="Enter name"  id="fname" readonly/>
+                </div>
+                <div class="inputBox">
+                    <span>email :</span>
+                    <input type="email" placeholder="example@example.com"  id="email" readonly/>
+                </div>
+                <div class="inputBox">
+                    <span>address :</span>
+                    <input type="text" placeholder="flat no - street - locality"  id="address">
+                <div id="UserAddress" style="margin: 3px 0px 7px 8px; color: red;visibility: hidden;font:2px;opacity: 0.7;">Enter Product Brand</div>
+
+                </div>
+                <div class="inputBox">
+                    <span>Phone No :</span>
+                    <input type="text" placeholder="enter number"  id="phnno" readonly/>
+                </div>
+
+                <div class="flex">
+                    <div class="inputBox">
+                        <span>state :</span>
+                        <input type="text" id="userstate" placeholder="karnataka" >
+                <div id="UserState" style="margin: 3px 0px 7px 8px; color: red;visibility: hidden;font:2px;opacity: 0.7;">Enter Product Brand</div>
+
+                    </div>
+                    <div class="inputBox">
+                        <span>zip code :</span>
+                        <input type="number" id="userzipcode" placeholder="560040" >
+                <div id="UserZipcode" style="margin: 3px 0px 7px 8px; color: red;visibility: hidden;font:2px;opacity: 0.7;">Enter Product Brand</div>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col">
+
+                <h3 class="title">payment</h3>
+
+                <div class="inputBox">
+                    <span>cards accepted :</span>
+                    <img src="cards.png" alt="">
+                </div>
+                <div class="inputBox">
+                    <span>name on card :</span>
+                    <input type="text" id="nameOnCard" placeholder="Enter card holder name" >
+                <div id="UserNameCard" style="margin: 3px 0px 7px 8px; color: red;visibility: hidden;font:2px;opacity: 0.7;">Enter Product Brand</div>
+
+                </div>
+                <div class="inputBox">
+                    <span>credit card number :</span>
+                    <input type="number" id="creditcardnum" placeholder="1111-2222-3333-4444" >
+                <div id="UserCredit" style="margin: 3px 0px 7px 8px; color: red;visibility: hidden;font:2px;opacity: 0.7;">Enter Product Brand</div>
+
+                </div>
+                <div class="inputBox">
+                    <span>exp month :</span>
+                    <input type="number" id="expmonth" placeholder="01" >
+                <div id="Usermonth" style="margin: 3px 0px 7px 8px; color: red;visibility: hidden;font:2px;opacity: 0.7;">Enter Product Brand</div>
+
+                </div>
+
+                <div class="flex">
+                    <div class="inputBox">
+                        <span>exp year :</span>
+                        <input type="number"id="useryear" placeholder="2021" >
+                <div id="expYear" style="margin: 3px 0px 7px 8px; color: red;visibility: hidden;font:2px;opacity: 0.7;">Enter Product Brand</div>
+
+
+                    </div>
+                    <div class="inputBox">
+                        <span>CVV :</span>
+                        <input type="text" id="usercvv" placeholder="000" >
+                <div id="UserCvv" style="margin: 3px 0px 7px 8px; color: red;visibility: hidden;font:2px;opacity: 0.7;">Enter Product Brand</div>
+
+                    </div>
+                </div>
+
+            </div>
+    
+        </div>
+
+      
+        
+           <button  value="proceed to checkout" type="button"
+           onclick="proceed()" class="submit-btn">Proceed to checkout</button>
+       
+    </form>
+
+</div>    
+<script>
+
+document.getElementById('fname').value = localStorage.getItem("UserLogName")
+document.getElementById('email').value = localStorage.getItem("UserLogEmail")
+document.getElementById("phnno").value = localStorage.getItem("UserLogPhone")
+
+
+var valUserAddress=document.getElementById('address')
+var userstateAddress=document.getElementById('userstate')
+let userstateAddressRegex = /^[A-Za-z]{3,25}$/;
+
+var userzipcodeAddress=document.getElementById('userzipcode')
+
+
+var nameOnCardAddress=document.getElementById('nameOnCard')
+let nameOnCardAddressRegex = /^[A-Za-z]{3,25}$/;
+
+
+var creditcardnumVal=document.getElementById('creditcardnum')
+
+var expmonthCard=document.getElementById('expmonth')
+let monthRegex = /^[A-Za-z]{3,25}$/;
+
+
+var useryearVal=document.getElementById('useryear')
+
+var usercvvVal=document.getElementById('usercvv')
+
+  function proceed(){
+  
+  var fname=document.getElementById('fname').value;
+  localStorage.setItem('fname',fname);
+  
+  
+  var email=document.getElementById('email').value;
+  localStorage.setItem('email',email);
+ 
+  
+  
+  var address=document.getElementById('address').value;
+  localStorage.setItem('address',address);
+
+  
+  var phnno=document.getElementById('phnno').value;
+  localStorage.setItem('phnno',phnno);
+
+  if(valUserAddress.value=='')
+  {
+    userstateAddress.style.border = '1px solid black'
+    UserState.style.visibility = 'hidden'
+    userzipcodeAddress.style.border = '1px solid black'
+    UserZipcode.style.visibility = 'hidden'
+    nameOnCardAddress.style.border= '1px solid black'
+    UserNameCard.style.visibility='hidden'
+    creditcardnumVal.style.border= '1px solid black'
+    UserCredit.style.visibility='hidden'
+    expmonthCard.style.border= '1px solid black'
+    Usermonth.style.visibility='hidden'
+    useryearVal.style.border= '1px solid black'
+    expYear.style.visibility='hidden'
+    usercvvVal.style.border= '1px solid black'
+    UserCvv.style.visibility='hidden'
+
+
+    valUserAddress.style.border = '1px solid red'
+    UserAddress.style.visibility = 'visible'
+    UserAddress.innerHTML = "Enter Address "
+  }
+  else if(userstateAddress.value=='')
+{
+    valUserAddress.style.border = '1px solid black'
+    UserAddress.style.visibility = 'hidden'
+    userzipcodeAddress.style.border = '1px solid black'
+    UserZipcode.style.visibility = 'hidden'
+    nameOnCardAddress.style.border= '1px solid black'
+    UserNameCard.style.visibility='hidden'
+    creditcardnumVal.style.border= '1px solid black'
+    UserCredit.style.visibility='hidden'
+    expmonthCard.style.border= '1px solid black'
+    Usermonth.style.visibility='hidden'
+    useryearVal.style.border= '1px solid black'
+    expYear.style.visibility='hidden'
+    usercvvVal.style.border= '1px solid black'
+    UserCvv.style.visibility='hidden'
+
+    userstateAddress.style.border = '1px solid red'
+    UserState.style.visibility = 'visible'
+    UserState.innerHTML = "Enter State"
+}
+else if(!(userstateAddressRegex.test(userstateAddress.value)))
+{
+  valUserAddress.style.border = '1px solid black'
+    UserAddress.style.visibility = 'hidden'
+    userzipcodeAddress.style.border = '1px solid black'
+    UserZipcode.style.visibility = 'hidden'
+    nameOnCardAddress.style.border= '1px solid black'
+    UserNameCard.style.visibility='hidden'
+    creditcardnumVal.style.border= '1px solid black'
+    UserCredit.style.visibility='hidden'
+    expmonthCard.style.border= '1px solid black'
+    Usermonth.style.visibility='hidden'
+    useryearVal.style.border= '1px solid black'
+    expYear.style.visibility='hidden'
+    usercvvVal.style.border= '1px solid black'
+    UserCvv.style.visibility='hidden'
+
+
+    userstateAddress.style.border = '1px solid red'
+    UserState.style.visibility = 'visible'
+    UserState.innerHTML = "Numbers are not allowed and min 3Char"
+}
+
+else if(userzipcodeAddress.value=='')
+{
+    valUserAddress.style.border = '1px solid black'
+    UserAddress.style.visibility = 'hidden'
+    userstateAddress.style.border = '1px solid black'
+    UserState.style.visibility = 'hidden'
+    nameOnCardAddress.style.border= '1px solid black'
+    UserNameCard.style.visibility='hidden'
+    creditcardnumVal.style.border= '1px solid black'
+    UserCredit.style.visibility='hidden'
+    expmonthCard.style.border= '1px solid black'
+    Usermonth.style.visibility='hidden'
+    useryearVal.style.border= '1px solid black'
+    expYear.style.visibility='hidden'
+    usercvvVal.style.border= '1px solid black'
+    UserCvv.style.visibility='hidden'
+
+    userzipcodeAddress.style.border = '1px solid red'
+    UserZipcode.style.visibility = 'visible'
+    UserZipcode.innerHTML = "Enter Zipcode"
+}
+else if(userzipcodeAddress.value.length>6 || userzipcodeAddress.value.length<6)
+{
+    valUserAddress.style.border = '1px solid black'
+    UserAddress.style.visibility = 'hidden'
+    userstateAddress.style.border = '1px solid black'
+    UserState.style.visibility = 'hidden'
+    nameOnCardAddress.style.border= '1px solid black'
+    UserNameCard.style.visibility='hidden'
+    creditcardnumVal.style.border= '1px solid black'
+    UserCredit.style.visibility='hidden'
+    expmonthCard.style.border= '1px solid black'
+    Usermonth.style.visibility='hidden'
+    useryearVal.style.border= '1px solid black'
+    expYear.style.visibility='hidden'
+    usercvvVal.style.border= '1px solid black'
+    UserCvv.style.visibility='hidden'
+
+   userzipcodeAddress.style.border = '1px solid red'
+    UserZipcode.style.visibility = 'visible'
+    UserZipcode.innerHTML = "Enter 6 digit Zipcode"
+}
+
+else if(nameOnCardAddress.value=='')
+{
+    valUserAddress.style.border = '1px solid black'
+    UserAddress.style.visibility = 'hidden'
+    userstateAddress.style.border = '1px solid black'
+    UserState.style.visibility = 'hidden'
+    userzipcodeAddress.style.border = '1px solid black'
+    UserZipcode.style.visibility = 'hidden'
+    creditcardnumVal.style.border= '1px solid black'
+    UserCredit.style.visibility='hidden'
+    expmonthCard.style.border= '1px solid black'
+    Usermonth.style.visibility='hidden'
+    useryearVal.style.border= '1px solid black'
+    expYear.style.visibility='hidden'
+    usercvvVal.style.border= '1px solid black'
+    UserCvv.style.visibility='hidden'
+
+
+    nameOnCardAddress.style.border= '1px solid red'
+    UserNameCard.style.visibility='visible'
+    UserNameCard.innerHTML = "Enter Card holder name"
+
+}
+else if(!(nameOnCardAddressRegex.test(nameOnCardAddress.value)))
+{
+    valUserAddress.style.border = '1px solid black'
+    UserAddress.style.visibility = 'hidden'
+    userstateAddress.style.border = '1px solid black'
+    UserState.style.visibility = 'hidden'
+    userzipcodeAddress.style.border = '1px solid black'
+    UserZipcode.style.visibility = 'hidden'
+    creditcardnumVal.style.border= '1px solid black'
+    UserCredit.style.visibility='hidden'
+    expmonthCard.style.border= '1px solid black'
+    Usermonth.style.visibility='hidden'
+    useryearVal.style.border= '1px solid black'
+    expYear.style.visibility='hidden'
+    usercvvVal.style.border= '1px solid black'
+    UserCvv.style.visibility='hidden'
+
+    nameOnCardAddress.style.border= '1px solid red'
+    UserNameCard.style.visibility='visible'
+    UserNameCard.innerHTML = "Numbers are not allowed and min 3Char"
+}
+
+else if(creditcardnumVal.value=='')
+{
+  valUserAddress.style.border = '1px solid black'
+    UserAddress.style.visibility = 'hidden'
+    userstateAddress.style.border = '1px solid black'
+    UserState.style.visibility = 'hidden'
+    userzipcodeAddress.style.border = '1px solid black'
+    UserZipcode.style.visibility = 'hidden'
+    nameOnCardAddress.style.border= '1px solid black'
+    UserNameCard.style.visibility='hidden'
+    expmonthCard.style.border= '1px solid black'
+    Usermonth.style.visibility='hidden'
+    useryearVal.style.border= '1px solid black'
+    expYear.style.visibility='hidden'
+    usercvvVal.style.border= '1px solid black'
+    UserCvv.style.visibility='hidden'
+
+    creditcardnumVal.style.border= '1px solid red'
+    UserCredit.style.visibility='visible'
+    UserCredit.innerHTML = "Enter Card number"
+}
+else if(creditcardnumVal.value.length<16 || creditcardnumVal.value.length>16 )
+{
+  valUserAddress.style.border = '1px solid black'
+    UserAddress.style.visibility = 'hidden'
+    userstateAddress.style.border = '1px solid black'
+    UserState.style.visibility = 'hidden'
+    userzipcodeAddress.style.border = '1px solid black'
+    UserZipcode.style.visibility = 'hidden'
+    nameOnCardAddress.style.border= '1px solid black'
+    UserNameCard.style.visibility='hidden'
+    expmonthCard.style.border= '1px solid black'
+    Usermonth.style.visibility='hidden'
+    useryearVal.style.border= '1px solid black'
+    expYear.style.visibility='hidden'
+    usercvvVal.style.border= '1px solid black'
+    UserCvv.style.visibility='hidden'
+
+  creditcardnumVal.style.border= '1px solid red'
+    UserCredit.style.visibility='visible'
+    UserCredit.innerHTML = "Enter 16 digit Card number"
+}
+
+else if(expmonthCard.value=='')
+{
+    valUserAddress.style.border = '1px solid black'
+    UserAddress.style.visibility = 'hidden'
+    userstateAddress.style.border = '1px solid black'
+    UserState.style.visibility = 'hidden'
+    userzipcodeAddress.style.border = '1px solid black'
+    UserZipcode.style.visibility = 'hidden'
+    nameOnCardAddress.style.border= '1px solid black'
+    UserNameCard.style.visibility='hidden'
+    creditcardnumVal.style.border= '1px solid black'
+    UserCredit.style.visibility='hidden'
+    useryearVal.style.border= '1px solid black'
+    expYear.style.visibility='hidden'
+    usercvvVal.style.border= '1px solid black'
+    UserCvv.style.visibility='hidden'
+
+
+    expmonthCard.style.border= '1px solid red'
+    Usermonth.style.visibility='visible'
+    Usermonth.innerHTML = "Enter Month"
+}
+else if(expmonthCard.value.length>2 ){
+  Usermonth.style.visibility='hidden'
+  expmonthCard.style.border= '1px solid black'
+
+
+  valUserAddress.style.border = '1px solid black'
+    UserAddress.style.visibility = 'hidden'
+    userstateAddress.style.border = '1px solid black'
+    UserState.style.visibility = 'hidden'
+    userzipcodeAddress.style.border = '1px solid black'
+    UserZipcode.style.visibility = 'hidden'
+    nameOnCardAddress.style.border= '1px solid black'
+    UserNameCard.style.visibility='hidden'
+    creditcardnumVal.style.border= '1px solid black'
+    UserCredit.style.visibility='hidden'
+    useryearVal.style.border= '1px solid black'
+    expYear.style.visibility='hidden'
+    usercvvVal.style.border= '1px solid black'
+    UserCvv.style.visibility='hidden'
+
+
+    expmonthCard.style.border= '1px solid red'
+    Usermonth.style.visibility='visible'
+    Usermonth.innerHTML = "Month should be 2 digit max"
+
+}
+else if(useryearVal.value=='')
+{
+    valUserAddress.style.border = '1px solid black'
+    UserAddress.style.visibility = 'hidden'
+    userstateAddress.style.border = '1px solid black'
+    UserState.style.visibility = 'hidden'
+    userzipcodeAddress.style.border = '1px solid black'
+    UserZipcode.style.visibility = 'hidden'
+    nameOnCardAddress.style.border= '1px solid black'
+    UserNameCard.style.visibility='hidden'
+    creditcardnumVal.style.border= '1px solid black'
+    UserCredit.style.visibility='hidden'
+    expmonthCard.style.border= '1px solid black'
+    Usermonth.style.visibility='hidden'
+
+    useryearVal.style.border= '1px solid red'
+    expYear.style.visibility='visible'
+    expYear.innerHTML = "Enter Year"
+}
+else if(useryearVal.value.length<4 || useryearVal.value.length>4)
+{
+  valUserAddress.style.border = '1px solid black'
+    UserAddress.style.visibility = 'hidden'
+    userstateAddress.style.border = '1px solid black'
+    UserState.style.visibility = 'hidden'
+    userzipcodeAddress.style.border = '1px solid black'
+    UserZipcode.style.visibility = 'hidden'
+    nameOnCardAddress.style.border= '1px solid black'
+    UserNameCard.style.visibility='hidden'
+    creditcardnumVal.style.border= '1px solid black'
+    UserCredit.style.visibility='hidden'
+    expmonthCard.style.border= '1px solid black'
+    Usermonth.style.visibility='hidden'
+
+    useryearVal.style.border= '1px solid red'
+    expYear.style.visibility='visible'
+    expYear.innerHTML = "Year should be of 4 digit"
+}
+else if(usercvvVal.value=='')
+{
+   valUserAddress.style.border = '1px solid black'
+    UserAddress.style.visibility = 'hidden'
+    userstateAddress.style.border = '1px solid black'
+    UserState.style.visibility = 'hidden'
+    userzipcodeAddress.style.border = '1px solid black'
+    UserZipcode.style.visibility = 'hidden'
+    nameOnCardAddress.style.border= '1px solid black'
+    UserNameCard.style.visibility='hidden'
+    creditcardnumVal.style.border= '1px solid black'
+    UserCredit.style.visibility='hidden'
+    expmonthCard.style.border= '1px solid black'
+    Usermonth.style.visibility='hidden'
+    useryearVal.style.border= '1px solid black'
+    expYear.style.visibility='hidden'
+
+    usercvvVal.style.border= '1px solid red'
+    UserCvv.style.visibility='visible'
+    UserCvv.innerHTML = "Enter CVV"
+}
+else if(usercvvVal.value.length>3 || usercvvVal.value.length<3){
+
+  usercvvVal.style.border= '1px solid black'
+    UserCvv.style.visibility='hidden'
+  valUserAddress.style.border = '1px solid black'
+    UserAddress.style.visibility = 'hidden'
+    userstateAddress.style.border = '1px solid black'
+    UserState.style.visibility = 'hidden'
+    userzipcodeAddress.style.border = '1px solid black'
+    UserZipcode.style.visibility = 'hidden'
+    nameOnCardAddress.style.border= '1px solid black'
+    UserNameCard.style.visibility='hidden'
+    creditcardnumVal.style.border= '1px solid black'
+    UserCredit.style.visibility='hidden'
+    expmonthCard.style.border= '1px solid black'
+    Usermonth.style.visibility='hidden'
+    useryearVal.style.border= '1px solid black'
+    expYear.style.visibility='hidden'
+
+
+  usercvvVal.style.border= '1px solid red'
+    UserCvv.style.visibility='visible'
+    UserCvv.innerHTML = "CVV Should be 3 digit"
+}
+else{
+    valUserAddress.style.border = '1px solid black'
+    UserAddress.style.visibility = 'hidden'
+    userstateAddress.style.border = '1px solid black'
+    UserState.style.visibility = 'hidden'
+    userzipcodeAddress.style.border = '1px solid black'
+    UserZipcode.style.visibility = 'hidden'
+    nameOnCardAddress.style.border= '1px solid black'
+    UserNameCard.style.visibility='hidden'
+    creditcardnumVal.style.border= '1px solid black'
+    UserCredit.style.visibility='hidden'
+    expmonthCard.style.border= '1px solid black'
+    Usermonth.style.visibility='hidden'
+    useryearVal.style.border= '1px solid black'
+    expYear.style.visibility='hidden'
+    usercvvVal.style.border= '1px solid black'
+    UserCvv.style.visibility='hidden'
+
+
+
+    window.location.href='file:///C:/Users/Admin/Desktop/js%20application/invoice.html'
+}
+  }
+
+
+ 
+  </script>
+</body>
+
+</html>

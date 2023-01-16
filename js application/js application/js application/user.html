@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>User</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<style>
+    body{
+        margin: 0px;
+        padding: 0px;
+        font-family: 'Caros Soft', sans-serif;
+        background-image: url("images/ba-image3\ \(2\).jpg");
+        background-repeat: no-repeat;
+        background-size:cover;
+        overflow-x: hidden;
+    }
+
+#gridContainer{
+  display: grid;
+  grid-template-rows: 20% 68%;
+  grid-gap: 5px;
+  background-color: black;
+  padding: 5px;
+  position: absolute;
+  left: 230px;
+  top: 60px;
+  width: 60%;
+  height: 75%;
+  }
+
+#ClickToContinueBtn:hover{
+  background-color: rgba(177, 177, 242, 0.356);
+  color: white;
+  border: none;
+  cursor: pointer;
+
+}
+#cartContainer::-webkit-scrollbar{
+  display: none;
+}
+</style>
+<body>
+    
+    <div style="display: flex;justify-content: center;gap: 390px;">
+        <div style="display: flex;justify-content: flex-start;align-items: center;margin-left: 10px;">
+        <img src="images/logo.png" width="70px" alt="Logo" title="Home" onclick="HomePageContents()">
+        </div>
+
+        <div id="navbar"  style="height: 50px;padding-right: 30px;display: flex;align-items: center;justify-content: flex-end;gap: 35px;" >
+           
+           <input type="search" name="mySearch" id="search-item" onkeyup="search()" style="width: 250px;height: 30px;border-radius: 8px;border: 0.5px;text-align: center;letter-spacing: 2px;font-size: medium;margin-right: 5px;" placeholder="Search Products">
+           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 26px;height:26px;margin-right:-23px;background-color:white;padding:4px;border-radius:50%;"><path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0S96 57.3 96 128s57.3 128 128 128zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg><span style="font-size: 20px;color: white;top: 6px;letter-spacing: 1px;font-weight: bold;" id="UserLogName"></span>
+            <span class="NavItems"><a onclick="WomenFilter()" style="cursor: pointer;color: white;font-size: 21px;">Women</a></span>
+            <span class="NavItems"><a onclick="MenFilter()" style="cursor: pointer;color: white;font-size: 21px;">Men</a></span>
+            <span class="NavItems" title="Cart"><a onclick="ViewCart()" style="cursor: pointer;color: white;font-size: 21px;"><i class="fa fa-cart-arrow-down text-white"></i></a></span>
+
+            <span class="NavItems"><a href="home.html" style="cursor: pointer;color: white;font-size: 21px;text-decoration: none" onclick="oLogout()">Logout</a></span>
+
+           
+        </div>
+
+    </div>
+
+    <!-- **************** Content ******************* -->
+
+<div id="card" class="row" style="display:grid;grid-template-columns: auto auto auto auto ;justify-content: space-around;margin-top: 30px;grid-template-rows:  auto auto auto auto;"></div>
+
+
+
+<!-- ******************Add to cart Popup ************************ -->
+
+
+<div id="oUserCartPopup" style=" width:100%;height: 100%;position: absolute;top: 0px;display: flex;background-color: rgba(4, 5, 5, 0.79);justify-content: space-around;visibility: hidden;;">
+
+    
+
+    
+
+</div>
+
+<div id="gridContainer" style="visibility: hidden;">
+
+  <div style="display: flex;background-color: rgba(177, 177, 242, 0.356); justify-content: center;align-items: center;">
+    <img src="images/logo.png" width="90px" alt="" style="position: relative;left: -210px;opacity: 0.7;">
+    <h3 style="color: white;font-size: 40px;font-family: Arial, Helvetica, sans-serif;letter-spacing: 3px;text-decoration: underline red 2px ;width: fit-content;height: fit-content;position: relative;left: -30px;padding: 0px;text-shadow: 2px 2px gray;" >Cart</h3>
+    <p id="TotalBill" style="color: white;font-size: 15px;font-family: Arial, Helvetica, sans-serif;letter-spacing: 3px;position: relative;left: 140px;width: fit-content;height: fit-content;position: relative;top:25px;padding: 0px;"></p>
+    
+  </div>
+  <div id="cartContainer" style="background-color: rgba(97, 93, 93, 0.363);display: grid;grid-template-columns: auto auto auto auto;overflow-y: scroll;">
+  
+  </div>
+  <button style="text-transform: uppercase;font-weight: bold;letter-spacing: 3px;font-size: 18px;" id="ClickToContinueBtn" onclick="toPayment()">Click to Continue</button>
+</div>
+
+
+<script>
+// **************Nav to Payment Method***************
+
+function toPayment()
+{
+  
+  if(this.TotalBill >0)
+  {
+    
+        var CountLen = document.getElementsByTagName("input")
+
+        var InpName = document.getElementsByTagName("input")
+        var myarr=new Array();
+
+        for(var i=1;i<=CountLen.length-1;i++)
+          {
+            myarr.push({
+              "qty":InpName[i].value
+            })
+            // alert(InpName[i].value);
+          }
+          localStorage.setItem("ProdQty",JSON.stringify(myarr))
+          localStorage.setItem("TotalBill",document.getElementById("TotalBill").innerHTML)
+    window.location.href="file:///C:/Users/a/Desktop/js%20application/payment.html"
+
+  }
+  else{
+    alert("Your Cart is empty.!!!")
+  }
+}
+this.TotalBill = document.getElementById('TotalBill').innerHTML
+
+// **************** Filter contents *****************
+debugger
+function MenFilter()
+{
+  document.getElementById("card").innerHTML='';
+
+  const displayCards=()=>{
+
+const  list = JSON.parse(localStorage.getItem("ProductDetails"))? JSON.parse(localStorage.getItem("ProductDetails")): [];
+
+var productList = list.filter((product)=>{
+  return product.ProdGend == 'Men'
+ })
+
+productList.forEach((product,index) => {
+
+var cardContainer = document.getElementById("card");
+
+const cardContent = `
+
+<div class = "product" style="width:190px;height:350px;border:0.5px solid gray;margin-bottom:25px;box-shadow: 0px 0px 5px 5px gray;border-radius: 8px;background-color: rgb(0,0,0,0.756)" >
+
+<img src=${product.ProductImage} width='190px' height='150px' style="border-radius: 8px 8px 0px 0px"/>
+
+      <div style="margin:0px;pading:0px;">
+
+        <h5 style="margin:2px;pading:0px;text-align:center;font: 18px cursive;color: gray;font-weight:bold"> Name : ${product.ProductName} </h5>
+
+        <p style="text-align:center;font: 16px cursive;color: gray;font-weight:bold;display:none;">Product ID :${product.ProductId}</p>
+        
+        <p style="text-align:center;font: 16px cursive;color: gray;" >Brand :${product.ProductBrand} </p>
+
+        <p style="text-align:center;font: 14px cursive;color: gray;display:none;" >Quantity :${product.ProductQty}</p>
+
+        <p style="text-align:center;font: 16px cursive;color: gray;" >Price :${product.ProductCost}</p>
+
+        <button type="button" onClick={addToCart(${product.ProductId})} style="position:relative;left:65px;margin-bottom:20px">Add to Cart</button>
+
+    </div>
+
+</div>`;
+
+cardContainer.innerHTML += cardContent;
+
+});
+
+}
+ displayCards()
+}
+
+
+function WomenFilter()
+{
+
+  document.getElementById("card").innerHTML='';
+
+const displayCards=()=>{
+
+const  list = JSON.parse(localStorage.getItem("ProductDetails"))? JSON.parse(localStorage.getItem("ProductDetails")): [];
+
+var productList = list.filter((product)=>{
+return product.ProdGend == 'Women'
+})
+
+productList.forEach((product,index) => {
+
+var cardContainer = document.getElementById("card");
+
+const cardContent = `
+
+<div style="width:190px;height:350px;border:0.5px solid gray;margin-bottom:25px;box-shadow: 0px 0px 5px 5px gray;border-radius: 8px;background-color: rgb(0,0,0,0.756)" >
+
+<img src=${product.ProductImage} width='190px' height='150px' style="border-radius: 8px 8px 0px 0px"/>
+
+    <div style="margin:0px;pading:0px;">
+
+      <h5 style="margin:2px;pading:0px;text-align:center;font: 18px cursive;color: gray;font-weight:bold"> Name : ${product.ProductName} </h5>
+
+      <p style="text-align:center;font: 16px cursive;color: gray;font-weight:bold;display:none;">Product ID :${product.ProductId}</p>
+      
+      <p style="text-align:center;font: 16px cursive;color: gray;" >Brand :${product.ProductBrand} </p>
+
+      <p style="text-align:center;font: 14px cursive;color: gray;display:none;" >Quantity :${product.ProductQty}</p>
+
+      <p style="text-align:center;font: 16px cursive;color: gray;" >Price :${product.ProductCost}</p>
+
+      <button type="button" onClick={addToCart(${product.ProductId})} style="position:relative;left:65px;margin-bottom:20px">Add to Cart</button>
+
+  </div>
+
+</div>`;
+
+cardContainer.innerHTML += cardContent;
+
+});
+
+}
+displayCards()
+
+}
+// **************End of Filter contents***************
+
+
+
+document.getElementById("UserLogName").innerHTML =  localStorage.getItem("UserLogName")
+
+ document.getElementById('oUserCartPopup').addEventListener('click',()=>{
+
+  document.getElementById('oUserCartPopup').style.visibility = "hidden"
+  document.getElementById('gridContainer').style.visibility = 'hidden'
+
+  document.getElementById('navbar').style.filter = "none"
+  document.getElementById('card').style.filter = "none"
+
+})
+
+var TotalBill=()=>{
+
+
+  const getAmount=JSON.parse(localStorage.getItem("cartedItems")) ? JSON.parse(localStorage.getItem("cartedItems")) : []
+
+  var currentBill = 0
+  getAmount.forEach((oItem)=>{
+    currentBill = parseInt(currentBill) + parseInt(oItem.ProductCost)
+
+  })
+
+  document.getElementById("TotalBill").innerHTML = "TotalBill :"+currentBill
+  this.TotalBill = currentBill
+}
+TotalBill()
+
+function ViewCart()
+{
+  
+  // location.reload()
+  document.getElementById('navbar').style.filter = "blur(4px)"
+  document.getElementById('card').style.filter = "blur(4px)"
+  document.getElementById('oUserCartPopup').style.visibility = 'visible'
+  document.getElementById('gridContainer').style.visibility = 'visible'
+
+  
+  
+  
+}
+// *******************User Contents*********************
+
+
+const displayCards=()=>{
+
+const productList = JSON.parse(localStorage.getItem("ProductDetails"))? JSON.parse(localStorage.getItem("ProductDetails")): [];
+
+productList.forEach((product,index) => {
+
+var cardContainer = document.getElementById("card");
+
+const cardContent = `
+
+<div class="product" style="width:190px;height:350px;border:0.5px solid gray;margin-bottom:25px;box-shadow: 0px 0px 5px 5px gray;border-radius: 8px;background-color:rgba(0, 0, 0, 0.722)" >
+
+<img src=${product.ProductImage} width='190px' height='150px' style="border-radius: 8px 8px 0px 0px"/>
+
+      <div style="margin:0px;pading:0px;">
+
+        <h5 style="margin:2px;pading:0px;text-align:center;font: 18px cursive;color: gray;font-weight:bold"> Name : ${product.ProductName} </h5>
+        
+        <p style="text-align:center;font: 16px cursive;color: gray;" >Brand :${product.ProductBrand} </p>
+
+        <p style="text-align:center;font: 14px cursive;color: gray;display:none;display:none;" >Quantity :${product.ProductQty}</p>
+
+        <p style="text-align:center;font: 16px cursive;color: gray;" >Price :${product.ProductCost}</p>
+
+        <button type="button" onClick={addToCart(${product.ProductId})} style="position:relative;left:65px;margin-bottom:20px">Add to Cart</button>
+
+    </div>
+
+</div>`;
+
+cardContainer.innerHTML += cardContent;
+
+});
+
+}
+
+// location.reload()
+displayCards()
+
+// **************** Home page contents ****************
+
+function HomePageContents()
+{
+  document.getElementById('card').innerHTML = ''
+  displayCards()
+}
+// ****************** Add to cart Functions*********************8
+
+
+
+
+var addToCart=(id)=>{
+    
+var cartedList=JSON.parse(localStorage.getItem("cartedItems")) ? JSON.parse(localStorage.getItem("cartedItems")) : []
+
+var allProducts = JSON.parse(localStorage.getItem("ProductDetails"))? JSON.parse(localStorage.getItem("ProductDetails")): [];
+;
+var menProduct;
+
+  if(cartedList.some((item)=>{ return item.ProductId == id }))
+  {
+      alert("Already added")
+      localStorage.setItem('cartedItems',JSON.stringify(cartedList))
+      return false
+  }
+  else{
+    menProduct=allProducts.find((product)=>{
+    
+
+    return product.ProductId == id
+  
+  })
+  }
+
+
+
+  cartedList.push(menProduct)
+
+  localStorage.setItem('cartedItems',JSON.stringify(cartedList))
+
+  alert('product added')
+location.reload()
+}
+
+
+const displayCart = () => {
+const productList = JSON.parse(localStorage.getItem("cartedItems"))
+    ? JSON.parse(localStorage.getItem("cartedItems"))
+    : [];
+productList.forEach((product,index) => {
+    var cardContainer = document.getElementById("cartContainer");
+    const cardContent = `
+    <div style="width:100px;height:210px;border:0.5px solid gray;margin-bottom:25px;box-shadow: 0px 0px 2px 2px gray;border-radius: 8px;margin:30px 0px 0px 50px;" >
+
+    <img src=${product.ProductImage} width='100px' height='70px' style="border-radius: 8px 8px 0px 0px"/>
+    
+          <div style="margin:0px;pading:0px;">
+    
+            <h5 style="margin:1px 1px -4px 1px;pading:1px 1px -4px 1px;text-align:center;font: 18px cursive;color: gray;">${product.ProductName} </h5>
+            
+            <p id=${index} style="text-align:center;font: 14px cursive;color: gray;margin:8px 1px 0px 1px;pading:1px 1px -4px 1px;" >Price :${product.ProductCost}</p>
+
+            <input value=1 name=${index} style="margin:5px 0px -5px 37px;width:20px;text-align:center;position:relative;top:27.5px;left:-2px;" readonly/>
+
+            <button type="button" id=${index} style="margin-left:8px;position:relative;top:6px;" onClick={decCount(${product.ProductCost},${index})}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width:8px;height:8px;"><path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"/></svg></i></button>
+          
+            
+            <button type="button" style="position:relative;top:6px;left:30px;" onClick={incCount(${product.ProductCost},${index})}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width:8px;height:8px;"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg></i></button>
+
+            
+
+         <button type="button" onClick={removeToCart(${product.ProductId})} style="font-size:11px;position:relative;left:23px;top:10px">Remove</button>
+        </div>
+     </div>
+      `;
+
+    cardContainer.innerHTML += cardContent;
+});
+
+// var PriceLen = document.getElementsByTagName("p")
+
+// var PriceId = document.getElementsByTagName("p")
+// debugger
+
+  
+}
+displayCart()
+
+// **************** remove items from the cart *****************
+
+const removeToCart=(id)=>{
+
+const cartedList=JSON.parse(localStorage.getItem("cartedItems")) ? JSON.parse(localStorage.getItem("cartedItems")) : []
+
+const filteredCart=cartedList.filter((product)=>{
+
+  return product.ProductId !== id
+
+})
+
+// cartedList.push(menProduct)
+
+
+
+  localStorage.setItem('cartedItems',JSON.stringify(filteredCart))
+
+  // document.getElementById('oUserCartPopup').style.visibility = "hidden"
+ 
+  
+alert('product removed')
+
+location.reload()
+
+}
+
+
+var incCount=(Itemcount,ind)=>{
+// console.log(this.TotalBill);
+
+var len = document.getElementsByTagName('input').length-1
+var inpVal = document.getElementsByTagName('input')
+
+var incCountVal =0
+var getVal = 0
+
+for(var i=0;i<=len;i++)
+{
+
+  if(inpVal[i].name == ind)
+  {
+
+    getVal = parseInt(inpVal[i].value)
+    incCountVal = (getVal + 1)
+    inpVal[i].value = incCountVal
+
+    this.TotalBill = this.TotalBill + Itemcount
+    document.getElementById('TotalBill').innerHTML = "Total Bill :"+this.TotalBill
+  }
+}
+
+}
+
+
+var decCount=(Itemcount1,ind)=>{
+
+var len = document.getElementsByTagName('input').length-1
+var inpVal = document.getElementsByTagName('input')
+
+var decCountVal = 0
+var getVal1 = 0
+
+for(var i=0;i<=len;i++)
+{
+
+  if(inpVal[i].name == ind)
+  {
+   
+    getVal1 = parseInt(inpVal[i].value)
+    decCountVal = (getVal1 - 1)
+    inpVal[i].value = decCountVal
+    
+    
+    if(decCountVal<1)
+    {
+      alert("Minmum Quantity should 1")
+      decCountVal = 1
+      inpVal[i].value = decCountVal
+    // document.getElementById('TotalBill').innerHTML = "Total Bill :"+this.TotalBill
+      // console.log(this.TotalBill);
+      return false
+    }
+    else{
+      this.TotalBill = this.TotalBill - Itemcount1
+      document.getElementById('TotalBill').innerHTML = "Total Bill :"+this.TotalBill
+    }
+    
+
+    
+  }
+}
+
+}
+localStorage.setItem('TotalBill', this.TotalBill)
+
+function oLogout(){
+ localStorage.removeItem("cartedItems")
+}
+
+// **************** search products *******************
+
+const search = ()=>{
+    const searchbox = document.getElementById("search-item").value.toUpperCase()
+    const storeitems = document.getElementById("card")
+    const product = document.querySelectorAll(".product")
+    const pname = storeitems.getElementsByTagName("h5")
+
+    for(var i=0;i<pname.length;i++){
+        let match = product[i].getElementsByTagName('h5')[0]
+
+        if(match){
+           let textvalue = match.textContent || match.innerHTML
+
+           if(textvalue.toUpperCase().indexOf(searchbox)>-1){
+            product[i].style.display = "";
+           }else{
+            product[i].style.display = "none";
+           }
+
+        }
+    }
+}
+</script>
+</body>
+</html>

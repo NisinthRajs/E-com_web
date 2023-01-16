@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        #log{
+            border: 0.5px solid black;
+            height: 290px;
+            width: 400px;
+            margin: 410px;
+            margin-top: 170px;
+            margin-left: 460px;
+            border-radius: 7px;
+        }
+      #in{
+        margin-left: 50px;
+        margin-top: 20px;
+        
+      }
+      .a{
+        width: 300px;
+        height: 30px;
+        border: 1px solid black;
+        border-radius: 8px;
+        text-align: center;
+        font-size: large;
+        font-family: cursive;
+       
+      }
+.a:focus{
+    border: 0.5px solid grey;
+   
+}
+.b{
+        width: 150px;
+        height: 30px;
+        border: 0.5px solid black;
+        border-radius: 6px;
+ }
+
+p{
+    margin-left: 160px;
+    color: aliceblue;
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-shadow: 1px 2px black;
+}
+a{
+    text-decoration: none;
+    color: grey;
+}
+a:hover{
+    text-decoration: underline;
+    
+}
+body{
+    height: 380px;
+    background-image: url("images/bg3\ \(2\).png");
+    background-repeat: no-repeat;
+    background-size:cover;
+    margin: 0px;
+    padding: 0px;
+    
+
+}
+
+h2{
+    margin-left: 120px;
+  color: rgb(234, 234, 234);
+    font-weight: bold;
+    font-family: cursive;
+    text-shadow: 2px 3px black;
+    letter-spacing: 4px;
+    font-size: 27px;
+    margin-bottom:12px;
+    margin-top: -10px;
+}
+button{
+    font-family: cursive;
+    font-size: medium;
+    color: grey;
+    background-color: white;
+}
+.p{
+    font-family: cursive;
+    font-size: medium;
+    color: grey;
+    background-color: white;
+    border-radius: 8px;
+    border: 0.5px solid gray;
+    margin-left: -10px;
+    width: 140px;
+}
+.q{
+    font-family: cursive;
+    font-size: medium;
+    color: grey;
+    background-color: white;
+    border-radius: 8px;
+    border: 0.5px solid gray;
+    margin-left: 4px;
+    width: 125px;
+}
+
+input::-webkit-inner-spin-button {
+        display: none;
+      }
+
+h1{
+    font-family: cursive;
+    color: grey;
+}
+
+.CreateAccountPopup:hover{
+    text-decoration: underline;
+    cursor: pointer;
+
+    
+}
+.i{
+    width: 250px;
+    height: 25px;
+    border-radius: 8px;
+    border: 0.5px solid gray;
+   text-align: center;
+   letter-spacing: 2px;
+   font-family: "monotype corsiva";
+   font-size: 17px;
+   font-weight: bold;
+
+}
+
+.i:focus{
+    border-radius: 8px;
+    border: none;
+}
+#Popup{
+    /* background-image: url("https://media.istockphoto.com/photos/cute-children-or-baby-card-white-clouds-on-the-light-blue-wooden-picture-id1090975842?b=1&k=20&m=1090975842&s=170667a&w=0&h=FMrfj3kIr1PPgda6_JWgtWS8ZvW6xyw74p8Au1MMnu0="); */
+    background-color: rgba(0, 0, 0, 0.452);
+}
+    </style>
+
+</head>
+
+<body >
+
+    <div id="popContainer" style=" height: 100vh;width: 99.99vw;background-color: rgba(0, 0, 0, 0.895);margin: 0px;padding: 0px;position: absolute;visibility: hidden;top: 0px;left: 0px;background-image: url('images/bg3\ \(2\).png');filter: blur(8px);background-repeat: no-repeat;background-size: cover;" ></div>
+    <div id="log">
+        
+        
+      
+            <div id="in">
+                <h2>Login</h2>
+                <form method="dialog">
+                <input type="number" placeholder="Enter Mobile Number" id="numm" class="a"/> <br>
+                <div id="MobNumberNotify" style="visibility: hidden;">sdfsdf</div><br>
+                <input type="password" placeholder="Enter Password" id="pas" class="a"/> <br>
+                <div id="PassNotify" style="visibility: hidden;">sdfsdf</div><br>
+
+                <button type="buttton" onclick="login()" class="b">Login</button>
+                <button type="reset" class="b">clear</button>
+            </form>
+                <p onclick="oSignup()" class="CreateAccountPopup">Create an account?</p>
+            </div>
+            
+       
+        <!-- <marquee behavior="" direction="left" > <h1>Flash Sale: upto 50% discount on all product </h1></marquee> -->
+        
+   
+    </div>
+
+ <!-- **************** signup page Popup  **************** -->
+
+    
+ <div id="Popup" style="display: none; position: absolute;top: 70px;left: 460px;padding: 25px 95px 100px 95px;height: 340px;box-shadow: 0px 0px 5px 5px gray;border-radius: 8px;">
+            <!-- <img src="button.png" height="25px" width="35px" onclick="oClose()" style="position: relative;top:3px;left: 290px;"/> -->
+    
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16" onclick="oClose()" style="position: relative;top: -40px;left: 340px;background-color:rgba(240, 248, 255, 0.852);border-radius:50%">
+                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+              </svg>
+            <h2 style="margin-left:-50px ;padding-left: 50px;position: relative;left: 40px;top: -20px; letter-spacing: 1px;">Create Account</h2>
+     
+        <form method="dialog" id="UserRegForm">
+                
+                    <input type="text" class="i" id="UserName" placeholder="Enter Your Name"/><br>
+                    <div id="UserNameNotify" style="margin: 3px 0px 7px 8px; color: rgb(255, 0, 0);visibility: hidden;font-size: 15px;font-weight: bold;letter-spacing: 1px;background-color: azure;width: fit-content;">Must contain Min-3 letters</div>
+
+                    <input type="number" class="i" id="UserPhone" placeholder="Enter Ph Number"/>
+                    <div id="UserPhoneNotify" style="margin: 3px 0px 7px 7px; color: red;visibility: hidden;font-size: 15px;font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px rgba(0, 0, 0, 0.904);">Must Prefix 6/7/8/9 and len-10</div>
+
+                    <input type="radio" class="w" name="gender" value="male"><span  style="color: white;font-size: 17px;">Male</span> </input>
+                    <input type="radio" name="gender" class="w" value="female"><span  style="color: white;font-size: 17px;">Female</span></input>
+                    <br>
+                    <div id="GenderNotify" style="margin: 3px 0px 7px 8px; color: red;visibility: hidden;font-size: 15px;font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px rgba(0, 0, 0, 0.904);">Select your gender</div>
+
+                    <input type="email" class="i" id="UserMail" placeholder="Enter Email Id"/> <br>
+                    <div id="UserMailNotify" style="margin: 3px 0px 7px 8px; color: red;visibility: hidden;font-size: 15px;font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px rgba(0, 0, 0, 0.904);">Must follow xx@xx.xx</div>
+
+                    <input type="password" class="i" id="UserPass" placeholder="Set Password"/> <br>
+                    <div id="UserPassNotify" style="margin: 3px 0px 7px 8px; color: red;visibility: hidden;font-size: 15px;font-weight: bold;letter-spacing: 1px;text-shadow: 1px 1px rgba(0, 0, 0, 0.904);">Must follow xxXX@00</div><br>
+                    
+                    <button onclick="UserRegister()" class="p" id="oCreateUserBtn" >Create Account</button>
+                    <button type="reset" class="q" id="oClearButton">Clear</button>
+
+
+                
+            </form>
+  
+
+</div>
+
+<script>
+    var UserNameNotify = document.getElementById('UserNameNotify')
+    var UserName = document.getElementById('UserName')
+    let userNameRegex = /^[A-Za-z]{3,25}$/;
+
+    var UserPhoneNotify = document.getElementById('UserPhoneNotify')
+    var UserPhone = document.getElementById('UserPhone')
+    
+    var UserPhoneRegex = /^[6-9][0-9]{9}$/
+
+    var UserMailNotify = document.getElementById('UserMailNotify')
+    var UserMail = document.getElementById('UserMail')
+    var UserMailRegex = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/
+
+    var UserPassNotify = document.getElementById('UserPassNotify')
+    var UserPass = document.getElementById('UserPass')
+    var UserPassRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+
+    var gender = document.getElementsByName('gender')
+    var GenderNotify =  document.getElementById('GenderNotify')
+
+
+   function UserRegister()
+   {            
+
+            localStorage.setItem("ShowDuplicateNum",UserPhone.value)
+
+                var UserGend = ''
+                for(var i=0;i<gender.length;i++)
+                {
+                    if(gender[i].checked){
+                       // console.log(gen[i].value);
+
+                       UserGend=gender[i].value
+                    }
+                }
+               
+                var signuparray=new Array()
+                
+                signuparray=JSON.parse(localStorage.getItem("UserRegisterData"))?JSON.parse(localStorage.getItem("UserRegisterData")):[]
+
+                
+
+
+            if(UserName.value == '')
+             {
+                UserPhoneNotify.style.visibility = 'hidden'
+                GenderNotify.style.visibility = 'hidden'
+                UserMailNotify.style.visibility = 'hidden'
+                UserPassNotify.style.visibility = 'hidden'
+
+                
+                UserPhone.style.border = '1px solid black'
+                UserMail.style.border = '1px solid black'
+                UserPass.style.border = '1px solid black'
+                
+                // alert("name error")
+                UserName.style.border = '1px solid red'
+                UserNameNotify.style.visibility = 'visible'
+                UserNameNotify.innerHTML = "User name cann't be Empty"
+             }   
+
+             else if(!(userNameRegex.test(UserName.value)))
+             {
+                
+                UserPhoneNotify.style.visibility = 'hidden'
+                GenderNotify.style.visibility = 'hidden'
+                UserMailNotify.style.visibility = 'hidden'
+                UserPassNotify.style.visibility = 'hidden'
+            
+                UserPhone.style.border = '1px solid black'
+                UserMail.style.border = '1px solid black'
+                UserPass.style.border = '1px solid black'
+
+
+
+                // alert("name error")
+                UserName.style.border = '1px solid red'
+                UserNameNotify.style.visibility = 'visible'
+                UserNameNotify.innerHTML = "Enter valid name "
+
+             } 
+             else if(UserPhone.value == '')
+             {
+                UserNameNotify.style.visibility = 'hidden'
+                GenderNotify.style.visibility = 'hidden'
+                UserMailNotify.style.visibility = 'hidden'
+                UserPassNotify.style.visibility = 'hidden'
+
+                UserName.style.border = '1px solid black'
+                UserMail.style.border = '1px solid black'
+                UserPass.style.border = '1px solid black'
+
+
+                UserPhone.style.border = '1px solid red'
+                UserPhoneNotify.innerHTML ="Phone number should not be empty"
+                UserPhoneNotify.style.visibility = 'visible'
+
+             }  
+             else if(!(UserPhoneRegex.test(UserPhone.value)))
+             {
+                UserNameNotify.style.visibility = 'hidden'
+                GenderNotify.style.visibility = 'hidden'
+                UserMailNotify.style.visibility = 'hidden'
+                UserPassNotify.style.visibility = 'hidden'
+
+                UserName.style.border = '1px solid black'
+                UserMail.style.border = '1px solid black'
+                UserPass.style.border = '1px solid black'
+
+                UserPhone.style.border = '1px solid red'
+                UserPhoneNotify.innerHTML ="Must Prefix 6/7/8/9 and len-10"
+                UserPhoneNotify.style.visibility = 'visible'
+             }
+             else if(UserGend == '')
+             {
+                UserNameNotify.style.visibility = 'hidden'
+                UserPhoneNotify.style.visibility = 'hidden'
+                UserMailNotify.style.visibility = 'hidden'
+                UserPassNotify.style.visibility = 'hidden'
+
+                UserName.style.border = '1px solid black'
+                UserPhone.style.border = '1px solid black'
+                UserMail.style.border = '1px solid black'
+                UserPass.style.border = '1px solid black'
+
+                GenderNotify.style.visibility = 'visible'
+                
+             }
+             else if(UserMail.value == '')
+             {
+                UserNameNotify.style.visibility = 'hidden'
+                UserPhoneNotify.style.visibility = 'hidden'
+                GenderNotify.style.visibility = 'hidden'
+                UserPassNotify.style.visibility = 'hidden'
+
+
+                UserName.style.border = '1px solid black'
+                UserPhone.style.border = '1px solid black'
+                UserPass.style.border = '1px solid black'
+
+                UserMail.style.border = '1px solid red'
+                UserMailNotify.innerHTML ="Email should not be empty"
+                UserMailNotify.style.visibility = 'visible'
+             }
+             else if((!UserMailRegex.test(UserMail.value)))
+             {
+                UserNameNotify.style.visibility = 'hidden'
+                UserPhoneNotify.style.visibility = 'hidden'
+                GenderNotify.style.visibility = 'hidden'
+                UserPassNotify.style.visibility = 'hidden'
+
+                UserName.style.border = '1px solid black'
+                UserPhone.style.border = '1px solid black'
+                UserPass.style.border = '1px solid black'
+
+                UserMail.style.border = '1px solid red'
+                UserMailNotify.innerHTML ="Must follow Eg. xx@xx.xx"
+                UserMailNotify.style.visibility = 'visible'
+             }
+             else if(UserPass.value == '')
+             {
+                UserNameNotify.style.visibility = 'hidden'
+                UserPhoneNotify.style.visibility = 'hidden'
+                GenderNotify.style.visibility = 'hidden'
+                UserMailNotify.style.visibility = 'hidden'
+
+                UserName.style.border = '1px solid black'
+                UserPhone.style.border = '1px solid black'
+                UserMail.style.border = '1px solid black'
+               
+
+
+                UserPass.style.border = '1px solid red'
+                UserPassNotify.innerHTML ="Password should not be empty"
+                UserPassNotify.style.visibility = 'visible'
+             }
+             else if(!(UserPassRegex.test(UserPass.value)))
+             {
+                UserNameNotify.style.visibility = 'hidden'
+                UserPhoneNotify.style.visibility = 'hidden'
+                GenderNotify.style.visibility = 'hidden'
+                UserMailNotify.style.visibility = 'hidden'
+
+                UserName.style.border = '1px solid black'
+                UserPhone.style.border = '1px solid black'
+                UserMail.style.border = '1px solid black'
+
+
+                UserPass.style.border = '1px solid red'
+                UserPassNotify.innerHTML ="Must follow xxXX@00"
+                UserPassNotify.style.visibility = 'visible'
+             }
+             else if(signuparray.some((val)=>{return val.number==UserPhone.value}))
+            {
+                UserNameNotify.style.visibility = 'hidden'
+                GenderNotify.style.visibility = 'hidden'
+                UserMailNotify.style.visibility = 'hidden'
+                UserPassNotify.style.visibility = 'hidden'
+
+
+                UserName.style.border = '1px solid black'
+                UserPhone.style.border = '1px solid black'
+                UserMail.style.border = '1px solid black'
+                UserPass.style.border = '1px solid black'
+
+                alert("user already registered")
+
+                document.getElementById('UserRegForm').reset();
+               
+                UserPhone.value =  localStorage.getItem("ShowDuplicateNum")
+                UserPhone.innerHTML =  localStorage.getItem("ShowDuplicateNum")
+
+                UserPhoneNotify.innerHTML = 'Phone number already exist'
+                UserPhoneNotify.style.visibility = 'visible'
+
+                 
+            }
+             else
+             {
+                UserNameNotify.style.visibility = 'hidden'
+                UserPhoneNotify.style.visibility = 'hidden'
+                UserMailNotify.style.visibility = 'hidden'
+                UserPassNotify.style.visibility = 'hidden'
+                GenderNotify.style.visibility = 'hidden'
+
+                UserName.style.border = '1px solid black'
+                UserPhone.style.border = '1px solid black'
+                UserMail.style.border = '1px solid black'
+                UserPass.style.border = '1px solid black'
+
+
+                    signuparray.push({
+                        "name":UserName.value,
+                        "number":UserPhone.value,
+                        "gender":UserGend,
+                        "mail":UserMail.value,
+                        "password":UserPass.value
+
+                    })
+
+                    localStorage.setItem("UserRegisterData",JSON.stringify(signuparray));
+                    alert("Account Created Success..")
+
+                    document.getElementById('UserRegForm').reset();
+                    document.getElementById('Popup').style.display = "none";
+                    document.getElementById('popContainer').style.visibility = 'hidden'
+
+                }
+
+              
+
+}
+</script>
+
+<script>
+   
+
+
+        var loginMob=document.getElementById('numm')
+        var phonenoVal = /^\d{10}$/;
+        
+        var loginPass=document.getElementById('pas')
+        var loginPassVal = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+
+    function login(){
+        var MobNumberNotify = document.getElementById('MobNumberNotify')
+        var PassNotify = document.getElementById('PassNotify')
+
+        var loginarray=new Array()
+          var loginmoblength=loginMob.value      
+        loginarray=JSON.parse(localStorage.getItem("UserRegisterData"))?JSON.parse(localStorage.getItem("UserRegisterData")):[]
+
+// debugger
+ if(loginMob.value==''){
+            loginMob.style.border = "1px solid red"
+             document.getElementById('MobNumberNotify').style.visibility = "visible"
+             document.getElementById('MobNumberNotify').innerHTML = "Mobile number cannot be blank"
+             document.getElementById('MobNumberNotify').style.color = "red"
+             document.getElementById('MobNumberNotify').style.margin="5px 0px 0px 20px"
+             document.getElementById('PassNotify').style.visibility = "hidden"
+             document.getElementById('PassNotify').style.color = "black"
+
+
+        }
+        else if( loginmoblength.length == 4 && loginMob.value==1234 && loginPass.value=='abc')
+        {
+            loginPass.style.border = "1px solid black"
+            loginMob.style.border = "1px solid black"
+
+            location.reload()
+            PassNotify.style.visibility = "hidden"
+            MobNumberNotify.style.visibility = "hidden"
+
+
+
+            alert("Hello Admin");
+            document.write("<a href='file:///C:/Users/Vishwanath.ganadal/Downloads/js%20application/admin.html'></a>")
+            window.location.href="file:///C:/Users/Vishwanath.ganadal/Downlo ads/js%20application/admin.html"
+        }
+       else if(loginmoblength.length>10){
+            loginMob.style.border = "1px solid red"
+             document.getElementById('MobNumberNotify').style.visibility = "visible"
+             document.getElementById('MobNumberNotify').innerHTML = "Mobile number cannot be greater than 10 digit"
+             document.getElementById('MobNumberNotify').style.color = "red"
+             document.getElementById('MobNumberNotify').style.margin="5px 0px 0px 20px"
+
+        }
+        
+      else if(!(phonenoVal.test(loginMob.value))){
+             loginMob.style.border = "1px solid red"
+             document.getElementById('MobNumberNotify').style.visibility = "visible"
+             document.getElementById('MobNumberNotify').innerHTML = "Mobile number cannot be less than 10 digit"
+             document.getElementById('MobNumberNotify').style.color = "red"
+             document.getElementById('MobNumberNotify').style.margin="5px 0px 0px 20px"
+           
+             
+
+        }
+        
+        else if(loginPass.value == '')
+        {
+            loginMob.style.border = "1px solid black"
+            MobNumberNotify.style.visibility = "hidden"
+
+            loginPass.style.border = "1px solid red"
+            PassNotify.style.visibility = "visible"
+            PassNotify.style.color = "red" 
+            PassNotify.style.margin="5px 0px 0px 20px"
+            PassNotify.innerHTML = "Password Cann't be blank"
+
+
+        }
+
+       else if(loginarray.some((val)=>{
+
+          return  val.number==loginMob.value && val.password==loginPass.value
+        }))
+        {
+            loginPass.style.border = "1px solid black"
+            loginMob.style.border = "1px solid black"
+
+            PassNotify.style.visibility = "hidden"
+            MobNumberNotify.style.visibility = "hidden"
+
+            loginarray.forEach((val,ind)=>{
+                if(loginMob.value == val.number)
+                {
+                    localStorage.setItem("UserLogName",val.name)
+                    localStorage.setItem("UserLogPhone",val.number)
+                    localStorage.setItem("UserLogEmail",val.mail)
+
+                }
+            })
+
+            var userNameLogin=localStorage.getItem("UserLogName")
+
+            alert(`Welcome ${userNameLogin}`); 
+
+            document.write("<a href='file:///C:/Users/Vishwanath.ganadal/Downloads/js%20application/js%20application/user.html'></a>")
+            window.location.href="file:///C:/Users/Vishwanath.ganadal/Downloads/js%20application/js%20application/user.html";
+        }
+    else{
+        
+        PassNotify.style.visibility = "visible"
+        MobNumberNotify.style.visibility = "visible"
+
+        MobNumberNotify.innerHTML = "Please Enter Valid Mobile Number"
+        PassNotify.innerHTML = "Please Enter Valid Password"
+        PassNotify.style.marginBottom = "-9px"
+
+        loginPass.style.border = "1px solid red"
+        loginMob.style.border = "1px solid red"
+
+
+    }        
+
+
+}
+
+
+// ************** Signup page  ****************
+
+
+function oClose()
+{
+    document.getElementById('Popup').style.display = "none";
+    document.getElementById('popContainer').style.visibility = 'hidden'
+}
+
+function oSignup(){
+    document.getElementById('Popup').style.display = "block"
+
+    document.getElementById('popContainer').style.visibility = 'visible'
+
+}
+
+document.getElementById("popContainer").addEventListener('click',()=>{
+
+    
+    document.getElementById('Popup').style.display = "none";
+    document.getElementById('popContainer').style.visibility = 'hidden'
+
+})
+</script>
+    
+</body>
+</html>
